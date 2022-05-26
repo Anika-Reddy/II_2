@@ -1,36 +1,30 @@
-#include <stdio.h>
+#include<stdio.h>
 int main(){
-	int a[10],i,n;
-	float twt,tat,ttat,wt;
-	scanf("%d",&n);
-	for(i=0;i<n;i++){
-		scanf("%d",&a[i]);
-	}
-	wt = 0;
-	printf("ArrayIndex\tBurstTime\tWaitingTime\tTurnAroundTime\n");
-	printf("0\t\t");
-	printf("%d\t\t",a[0]);
-	printf("%.2f\t\t",wt);
-	tat = a[0];
-	printf("%.2f\n",tat);
-	twt = 0;
-	ttat = a[0];
-	for(i=1;i<n;i++){
-		printf("%d\t\t",i);
-		printf("%d\t\t",a[i]);
-		wt = tat;
-		printf("%.2f\t\t",wt);
-		twt += wt;
-		tat = wt + a[i];
-		printf("%.2f\n",tat);
-		ttat += tat;
-	}
-	
-	
-	
-	
-	printf("Average Waiting Time is %.2f\n",twt/n);
-	printf("Average Turn Around Time is %.2f\n",ttat/n);
-	
-	return 0;
+    int n,p[20],wt[20],tat[20],i,twt=0,ttat=0;
+    float avg_wt,avg_tat;
+   
+    printf("No.of processors: ");
+    scanf("%d",&n);
+    printf("assign Burst time for each processor\n");
+    for(i=0;i<n;i++){
+        scanf("%d",&p[i]);
+    }
+    wt[0] = 0;
+    for(i=0;i<n;i++){
+        tat[i] = wt[i] + p[i];
+        wt[i+1] = tat[i];
+        twt += wt[i];
+        ttat += tat[i];
+    }
+    avg_wt = twt / (float)n;
+    avg_tat = ttat / (float)n;
+    printf("processor  BurstTime  WaitingTime  TurnAroundTime\n");
+    for(i=0;i<n;i++){
+        printf("    %d          %d          %d          %d\n",(i+1),p[i],wt[i],tat[i]);
+    }
+    printf("Average waiting time is: %.2f\nAverage Turn Around Time is: %.2f",avg_wt,avg_tat);
+     
+    return 0;
 }
+
+
