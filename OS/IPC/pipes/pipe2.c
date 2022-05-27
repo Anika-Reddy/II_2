@@ -12,7 +12,6 @@ int main(){
 		printf("Unable to create pipe\n");
 		return 1;
 	}
-	
 	pid = fork();
 	if(pid == 0){
 		read(pipefd[0],rmsg,sizeof(rmsg));
