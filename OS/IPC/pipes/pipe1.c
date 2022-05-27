@@ -28,5 +28,3 @@ int main(){
 	printf("Message-2  =   %s\n",rmsg);
 	return 0;
 }
-
-	
