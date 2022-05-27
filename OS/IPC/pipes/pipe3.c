@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-
 int main(){
 	int pipefd1[2],pipefd2[2];
 	int return_status1,return_status2;
